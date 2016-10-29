@@ -1,3 +1,7 @@
+//
+// Created by mike on 16-10-25.
+//
+
 #include <iostream>
 #include "RubiksCube.h"
 #include "solve.h"
