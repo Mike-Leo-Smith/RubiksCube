@@ -1,6 +1,6 @@
 {
   "name": "Rubik‘s Cube",
-  "tagline": "An automatic Rubik's Cube solver written in C++, using OpenGL for graphics.",
+  "tagline": "An automatic Rubik's Cube solver written in C++.",
   "body": "## Introduction\r\nIt's just as simple as the program below...\r\n\r\n```\r\n#include <iostream>\r\n\r\nint main()\r\n{\r\n    std::cout << \"hello, world\" << std::endl;\r\n    return 0;\r\n}\r\n```\r\n\r\n## Compile & Run\r\nTo compile it on Linux using g++, first make sure you have installed proper versions of OpenGL and freeglut, and then type the following commands in the terminal:\r\n\r\n```\r\n$ g++ *.cpp *.h -std=c++11 -lGL -lGLU -lglut\r\n```\r\n\r\nAnd run it by simply typing:\r\n\r\n```\r\n$ ./a.out\r\n```\r\n\r\nThen input a number as the seed for the random number generator, so it will have different cubes to solve, and enjoy the magic steps as the Rubik's Cube restores itself...\r\n\r\nApproach to compiling and running it on other platforms should be similar. Discover it yourself!\r\n\r\n## About\r\n\r\nThis program is developed by Mike Smith. Source codes are free for non-commercial use.\r\n",
   "note": "Don't delete this file! It's used internally to help with page regeneration."
 }
