@@ -28,7 +28,7 @@ And run it by simply typing:
 $ ./a.out
 ```
 
-Then input a number as the seed for the random number generator the program use, so it will have different cubes to solve, and enjoy the magic steps as the Rubik's Cube restores itself...
+Then input a number as the seed for the random number generator, so it will have different cubes to solve, and enjoy the magic steps as the Rubik's Cube restores itself...
 
 Approach to compiling and running it on other platforms should be similar. Discover it yourself!
 
