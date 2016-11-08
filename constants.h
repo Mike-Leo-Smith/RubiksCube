@@ -20,7 +20,7 @@ namespace RubiksCube
 					{220, 220, 220},    // white
 					{45, 65, 250},    // blue
 					{45, 210, 45},     // green
-					{45, 45, 45}      // invisible
+					{25, 25, 25}      // invisible
 			};
 	
 	enum FACE_NAME

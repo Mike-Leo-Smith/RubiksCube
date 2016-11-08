@@ -110,7 +110,7 @@ namespace RubiksCube
 	
 	inline COLOR_NAME mapColorName(char color)
 	{
-		
+		return INVISIBLE;
 	}
 	
 	void Cube::loadCube(const char face[6][3][3])
