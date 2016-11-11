@@ -1,4 +1,4 @@
-# RubiksCube
+# [Rubik's Cube](https://mike-leo-smith.github.io/RubiksCube/)
 
 <big> An automatic Rubik's Cube solver written in C++, using OpenGL for graphics. </big>
 
