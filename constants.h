@@ -9,18 +9,19 @@ namespace RubiksCube
 {
 	enum COLOR_NAME
 	{
-		RED, ORANGE, YELLOW, WHITE, BLUE, GREEN, INVISIBLE
+		RED, ORANGE, YELLOW, WHITE, BLUE, GREEN, BLOCK, PIVOT, INVISIBLE
 	};
 	
 	const unsigned char Color3ub[][3] =
 			{
-					{220, 30, 40},     // red
+					{220, 30, 40},      // red
 					{250, 110, 25},     // orange
 					{210, 220, 35},     // yellow
 					{220, 220, 220},    // white
-					{45, 65, 250},    // blue
-					{45, 210, 45},     // green
-					{25, 25, 25}      // invisible
+					{45, 65, 250},      // blue
+					{45, 210, 45},      // green
+					{25, 25, 25},       // color of block
+					{20, 20, 20}        // color of pivot
 			};
 	
 	enum FACE_NAME

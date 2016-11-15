@@ -14,13 +14,14 @@ namespace RubiksCube
 	{
 		int frame_count;
 		static const int MAX_FRAME = 90;
-		static const int STEP = 6;
+		static const int STEP = 3;
+		static const int FPS = 90;
 		ROTATE_METHOD rotate_method = N;
 		
 		Animation(ROTATE_METHOD rotate_method) : frame_count(0), rotate_method(rotate_method){}
 	};
 	
-	extern void initDisplay(int &argc, char *argv[], const RubiksCube::Cube &cb);
+	extern void initDisplay(const RubiksCube::Cube &cb);
 	extern void startDisplay(void);
 	extern void loadOperation(const ROTATE_METHOD *s);
 }
