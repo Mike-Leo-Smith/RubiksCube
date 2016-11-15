@@ -32,7 +32,7 @@ On Windows, things are similar. If you are using g++, after setting up your envi
 
 Commands on other platforms are similar, discover them yourself.
 
-If you goes along well with the steps above, you will got things like "Rubik's Cube.out" or "Rubik's Cube.exe" in the directory. Double-click it to run, and now it's time to enjoy the magic steps as the Rubik's Cube restores itself...
+If you goes along well with the steps above, you will get things like "Rubik's Cube.out" or "Rubik's Cube.exe" in the directory. Double-click it to run, and now it's time to enjoy the magic steps as the Rubik's Cube restores itself...
 
 ## About
 
