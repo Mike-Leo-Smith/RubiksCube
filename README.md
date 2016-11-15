@@ -16,21 +16,23 @@ int main()
 ```
 
 ## Compile & Run
-To compile it on Linux using g++, first make sure you have installed proper versions of OpenGL and freeglut, and then type the following commands in the terminal:
+Before you start compiling, first make sure you have installed glfw3. Since project uses cmake to manage files, you can simply compile it use cmake and make, or use IDEs that support cmake. Also, there shouldn't be much difficulty to compile it with Visual Studio or other IDEs.
+
+If you prefer to compile it in command-line, on Linux, type the following commands in the terminal:
 
 ```
-$ g++ *.cpp *.h -std=c++11 -lGL -lGLU -lglut
+$ g++ -o "Rubik's Cube.out" *.cpp *.h -std=c++11 -lGL -lGLU -lglfw3
 ```
 
-And run it by simply typing:
+On Windows, things are similar. If you are using g++, after setting up your environment, just type in cmd:
 
 ```
-$ ./a.out
+> g++ -o "Rubik's Cube.exe" *.cpp *.h -std=c++11 -lopengl32 -lglu32 -lglfw3 -Wl,--subsystem,windows
 ```
 
-Then input a number as the seed for the random number generator, so it will have different cubes to solve, and enjoy the magic steps as the Rubik's Cube restores itself...
+Commands on other platforms are similar, discover them yourself.
 
-Approach to compiling and running it on other platforms should be similar. Discover it yourself!
+If you goes along well with the steps above, you will got things like "Rubik's Cube.out" or "Rubik's Cube.exe" in the directory. Double-click it to run, and now it's time to enjoy the magic steps as the Rubik's Cube restores itself...
 
 ## About
 
