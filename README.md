@@ -18,7 +18,7 @@ int main()
 ## Compile & Run
 Before you start compiling, first make sure you have installed glfw3. Since project uses cmake to manage files, you can simply compile it use cmake and make, or use IDEs that support cmake. Also, there shouldn't be much difficulty to compile it with Visual Studio or other IDEs.
 
-If you prefer to compile it in command-line, on Linux, type the following commands in the terminal:
+If you prefer to compile it manually in command-line, on Linux, type the following commands in the terminal:
 
 ```
 $ g++ -o "Rubik's Cube.out" *.cpp *.h -std=c++11 -lGL -lGLU -lglfw3
