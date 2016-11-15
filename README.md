@@ -36,4 +36,6 @@ If you goes along well with the steps above, you will get things like "Rubik's C
 
 ## About
 
-This program is developed by Mike Smith. Source codes are free for non-commercial use. Any advice is welcomed.
+This program is developed by Mike Smith. Source codes are free for non-commercial use.
+
+Any advice is welcomed.
