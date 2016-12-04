@@ -3,8 +3,8 @@
 //
 
 #include <cstdlib>
-#include "GL/glu.h"
-#include "GL/glfw3.h"
+#include "opengl/glu.h"
+#include "GLFW/glfw3.h"
 #include "RubiksCube.h"
 #include "display.h"
 #include "usefull.h"

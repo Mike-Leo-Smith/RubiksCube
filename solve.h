@@ -2,10 +2,10 @@
 // Created by mike on 16-10-25.
 //
 
-#include "RubiksCube.h"
-
 #ifndef _SOLVE_H_
 #define _SOLVE_H_
+
+#include "RubiksCube.h"
 
 namespace RubiksCube
 {

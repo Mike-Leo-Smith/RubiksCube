@@ -2,11 +2,11 @@
 // Created by mike on 16-10-23.
 //
 
-#include "constants.h"
-#include "RubiksCube.h"
-
 #ifndef _DISPLAY_H_
 #define _DISPLAY_H_
+
+#include "constants.h"
+#include "RubiksCube.h"
 
 namespace RubiksCube
 {
@@ -14,7 +14,7 @@ namespace RubiksCube
 	{
 		int frame_count;
 		static const int MAX_FRAME = 90;
-		static const int STEP = 3;
+		static const int STEP = 6;
 		static const int FPS = 90;
 		ROTATE_METHOD rotate_method = N;
 		

@@ -2,10 +2,10 @@
 // Created by mike on 16-10-21.
 //
 
-#include "constants.h"
-
 #ifndef _RUBIKSCUBE_H_
 #define _RUBIKSCUBE_H_
+
+#include "constants.h"
 
 namespace RubiksCube
 {
