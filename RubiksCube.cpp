@@ -110,17 +110,34 @@ namespace RubiksCube
 	
 	inline COLOR_NAME mapColorName(char color)
 	{
-		return INVISIBLE;
+		switch (color)
+		{
+		case 'R':
+			return RED;
+		case 'O':
+			return ORANGE;
+		case 'Y':
+			return YELLOW;
+		case 'W':
+			return WHITE;
+		case 'B':
+			return BLUE;
+		case 'G':
+			return GREEN;
+		default:
+			return INVISIBLE;
+		}
 	}
 	
+	// Load the cube in FRONT-BACK-RIGHT-LEFT-UP-DOWN order
 	void Cube::loadCube(const char face[6][3][3])
 	{
 		for_front(x, y, z) getBlockPtrRef(x, y, z)->setFaceColor(FRONT, mapColorName(face[0][-y + 1][x + 1]));
-		for_right(x, y, z) getBlockPtrRef(x, y, z)->setFaceColor(RIGHT, mapColorName(face[1][-y + 1][-z + 1]));
-		for_back(x, y, z) getBlockPtrRef(x, y, z)->setFaceColor(BACK, mapColorName(face[2][-y + 1][-x + 1]));
+		for_back(x, y, z) getBlockPtrRef(x, y, z)->setFaceColor(BACK, mapColorName(face[1][-y + 1][-x + 1]));
+		for_right(x, y, z) getBlockPtrRef(x, y, z)->setFaceColor(RIGHT, mapColorName(face[2][-y + 1][-z + 1]));
 		for_left(x, y, z) getBlockPtrRef(x, y, z)->setFaceColor(LEFT, mapColorName(face[3][-y + 1][z + 1]));
 		for_up(x, y, z) getBlockPtrRef(x, y, z)->setFaceColor(UP, mapColorName(face[4][z + 1][x + 1]));
-		for_down(x, y, z) getBlockPtrRef(x, y, z)->setFaceColor(DOWN, mapColorName(face[5][z + 1][x + 1]));
+		for_down(x, y, z) getBlockPtrRef(x, y, z)->setFaceColor(DOWN, mapColorName(face[5][-z + 1][x + 1]));
 	}
 	
 	void Layer::connectBlock(int index, Block *&block)

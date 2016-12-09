@@ -2,6 +2,7 @@
 // Created by mike on 16-10-25.
 //
 
+#include <iostream>
 #include "solve.h"
 #include "usefull.h"
 
@@ -9,6 +10,8 @@ namespace RubiksCube
 {
 	static OpStack op_seq;
 	static Cube *cube;
+	
+	static char mapOperationName(ROTATE_METHOD rotate_method);
 	
 	static void fixButtomLayer(void);
 	static void fixMiddleLayer(void);
@@ -36,6 +39,61 @@ namespace RubiksCube
 		fixTopLayer();
 		
 		op_seq.add(STOP);
+	}
+	
+	void printOperation(void)
+	{
+		for (int i = 0; op_seq[i] != STOP; i++)
+		{
+			char c = mapOperationName(op_seq[i]);
+			if (c != 'N') std::cout << c;
+		}
+		std::cout << std::endl;
+	}
+	
+	char mapOperationName(ROTATE_METHOD rotate_method)
+	{
+		switch (rotate_method)
+		{
+		case U:
+			return 'U';
+		case Ui:
+			return 'u';
+		case D:
+			return 'D';
+		case Di:
+			return 'd';
+		case F:
+			return 'F';
+		case Fi:
+			return 'f';
+		case B:
+			return 'B';
+		case Bi:
+			return 'b';
+		case R:
+			return 'R';
+		case Ri:
+			return 'r';
+		case L:
+			return 'L';
+		case Li:
+			return 'l';
+		case X:
+			return 'X';
+		case Xi:
+			return 'x';
+		case Y:
+			return 'Y';
+		case Yi:
+			return 'y';
+		case Z:
+			return 'Z';
+		case Zi:
+			return 'z';
+		default:
+			return 'N';
+		}
 	}
 	
 	void performFormula(const char *formula)
@@ -479,5 +537,10 @@ namespace RubiksCube
 	inline void OpStack::push(ROTATE_METHOD rotate_method)
 	{
 		_elem[_stack_top++] = rotate_method;
+	}
+	
+	ROTATE_METHOD OpStack::operator[](int index)
+	{
+		return _elem[index];
 	}
 }

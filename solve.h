@@ -20,9 +20,11 @@ namespace RubiksCube
 	public:
 		void add(ROTATE_METHOD rotate_method);
 		void setElemPtr(ROTATE_METHOD *op);
+		ROTATE_METHOD operator[](int index);
 	};
 	
 	void solveCube(const Cube &cb, ROTATE_METHOD *op_sequence);
+	void printOperation(void);
 }
 
 #endif	// _SOLVE_H_

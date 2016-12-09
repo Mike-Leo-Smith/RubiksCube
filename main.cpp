@@ -2,7 +2,7 @@
 // Created by mike on 16-10-25.
 //
 
-#include <cstdlib>
+#include <iostream>
 #include "RubiksCube.h"
 #include "solve.h"
 #include "display.h"
@@ -12,18 +12,24 @@ using namespace RubiksCube;
 int main(int argc, char *argv[])
 {
 	ROTATE_METHOD op[10000] = {STOP};
-	
-	int seed = 5;
-	
 	Cube cube;
+	char cube_raw[6][3][3];
 	
-	//std::cin >> seed;
-	srand((unsigned int)seed);
+	for (int i = 0; i < 6; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			for (int k = 0; k < 3; k++)
+			{
+				cube_raw[i][j][k] = std::cin.get();
+			}
+		}
+		std::cin.get(); // Get rid of '\n'
+	}
 	
-	for (int i = 0; i < 971216; i++)
-		cube.rotateLayer(ROTATE_METHOD((rand() % 2 ? 1 : -1) * (rand() % 9 + 1)));
-	
+	cube.loadCube(cube_raw);
 	solveCube(cube, op);
+	printOperation();
 	initDisplay(cube);
 	loadOperation(op);
 	startDisplay();
