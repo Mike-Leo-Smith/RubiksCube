@@ -29,13 +29,6 @@ int main(int argc, char *argv[])
 	}
 	
 	cube.loadCube(cube_raw);
-	
-	/*
-	for (int i = 0; i < 1000; i++)
-	{
-		cube.rotateLayer(ROTATE_METHOD(rand() % 9 + 1));
-	}
-	*/
 	solveCube(cube, op);
 	printOperation();
 	
