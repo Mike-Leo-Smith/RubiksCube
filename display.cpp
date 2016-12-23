@@ -7,7 +7,7 @@
 #include "GLFW/glfw3.h"
 #include "RubiksCube.h"
 #include "display.h"
-#include "usefull.h"
+#include "useful.h"
 
 #ifndef GL_MULTISAMPLE
 #define GL_MULTISAMPLE 0x809D       // this marco is not defined in some implementations, so define it manually here

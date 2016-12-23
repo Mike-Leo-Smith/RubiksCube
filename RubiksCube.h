@@ -40,7 +40,9 @@ namespace RubiksCube
 		Block *_block[3][3][3];
 		Layer _layer[6];
 		Block *&getBlockPtrRef(int x, int y, int z);
+		FACE_NAME _color_face_map[6];
 		void connectBlockToLayer(void);
+		COLOR_NAME getFaceCenterColor(FACE_NAME fn) const;
 	
 	public:
 		Cube(void);
@@ -48,6 +50,7 @@ namespace RubiksCube
 		const Block *getBlockPtr(int x, int y, int z) const;
 		void rotateLayer(ROTATE_METHOD rotate_method);
 		void loadCube(const char face[6][3][3]);
+		ROTATE_METHOD getMappedOperation(ROTATE_METHOD method) const;
 	};
 }
 

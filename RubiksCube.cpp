@@ -3,7 +3,7 @@
 //
 
 #include "display.h"
-#include "usefull.h"
+#include "useful.h"
 
 namespace RubiksCube
 {
@@ -61,6 +61,7 @@ namespace RubiksCube
 	{
 		for_each(x, y, z) getBlockPtrRef(x, y, z) = new Block(x, y, z);
 		connectBlockToLayer();
+		for (int i = 0; i < 6; i++) _color_face_map[getFaceCenterColor((FACE_NAME)i)] = (FACE_NAME)i;
 	}
 	
 	void Cube::rotateLayer(ROTATE_METHOD rotate_method)
@@ -92,7 +93,12 @@ namespace RubiksCube
 	Cube::Cube(const Cube &cb)
 	{
 		for_each(x, y, z) getBlockPtrRef(x, y, z) = new Block(*cb.getBlockPtr(x, y, z));
+		for (int i = 0; i < 6; i++)
+		{
+			_color_face_map[i] = cb._color_face_map[i];
+		}
 		connectBlockToLayer();
+		for (int i = 0; i < 6; i++) _color_face_map[getFaceCenterColor((FACE_NAME)i)] = (FACE_NAME)i;
 	}
 	
 	void Cube::connectBlockToLayer(void)
@@ -138,6 +144,39 @@ namespace RubiksCube
 		for_left(x, y, z) getBlockPtrRef(x, y, z)->setFaceColor(LEFT, mapColorName(face[3][-y + 1][z + 1]));
 		for_up(x, y, z) getBlockPtrRef(x, y, z)->setFaceColor(UP, mapColorName(face[4][z + 1][x + 1]));
 		for_down(x, y, z) getBlockPtrRef(x, y, z)->setFaceColor(DOWN, mapColorName(face[5][-z + 1][x + 1]));
+		
+		// sadly we cannot have X, Y, Z rotations in the output, so use this mapping to patch...
+		for (int i = 0; i < 6; i++) _color_face_map[getFaceCenterColor((FACE_NAME)i)] = (FACE_NAME)i;
+	}
+	
+	COLOR_NAME Cube::getFaceCenterColor(FACE_NAME fn) const
+	{
+		int x = 0, y = 0, z = 0;
+		
+		if (fn == FRONT) z = 1;
+		else if (fn == BACK) z = -1;
+		else if (fn == RIGHT) x = 1;
+		else if (fn == LEFT) x = -1;
+		else if (fn == UP) y = 1;
+		else if (fn == DOWN) y = -1;
+		
+		return getBlockPtr(x, y, z)->getFaceColor(fn);
+	}
+	
+	ROTATE_METHOD Cube::getMappedOperation(ROTATE_METHOD method) const
+	{
+		FACE_NAME op_face = FACE_NAME(abs(method) - 1);
+		FACE_NAME origin_face = _color_face_map[getFaceCenterColor(op_face)];
+		ROTATE_METHOD origin_method = ROTATE_METHOD(origin_face + 1);
+		if (method > 0 && method % 2 != 0 || method < 0 && abs(method) % 2 == 0)  // counter-clockwise rotation methods
+		{
+			if (origin_method % 2 == 0) origin_method = ROTATE_METHOD(-origin_method);
+		}
+		else    // clockwise rotation methods
+		{
+			if (origin_method % 2 != 0) origin_method = ROTATE_METHOD(-origin_method);
+		}
+		return origin_method;
 	}
 	
 	void Layer::connectBlock(int index, Block *&block)

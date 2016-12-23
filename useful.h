@@ -2,8 +2,8 @@
 // Created by mike on 16-10-25.
 //
 
-#ifndef _USEFULL_H_
-#define _USEFULL_H_
+#ifndef _USEFUL_H_
+#define _USEFUL_H_
 
 #define for_right(x, y, z)    for (int x = 1, y = -1; y <= 1; y++)    for (int z = -1; z <= 1; z++)
 #define for_left(x, y, z)   for (int x = -1, y = -1; y <= 1; y++)   for (int z = -1; z <= 1; z++)
@@ -42,4 +42,4 @@ namespace RubiksCube
 	}
 }
 
-#endif 	// _USEFULL_H_
+#endif 	// _USEFUL_H_

@@ -11,8 +11,9 @@ using namespace RubiksCube;
 
 int main(int argc, char *argv[])
 {
-	ROTATE_METHOD op[10000] = {STOP};
+	ROTATE_METHOD op[10000] = { STOP };
 	Cube cube;
+	
 	char cube_raw[6][3][3];
 	
 	for (int i = 0; i < 6; i++)
@@ -21,15 +22,23 @@ int main(int argc, char *argv[])
 		{
 			for (int k = 0; k < 3; k++)
 			{
-				cube_raw[i][j][k] = std::cin.get();
+				cube_raw[i][j][k] = (char)std::cin.get();
 			}
 		}
 		std::cin.get(); // Get rid of '\n'
 	}
 	
 	cube.loadCube(cube_raw);
+	
+	/*
+	for (int i = 0; i < 1000; i++)
+	{
+		cube.rotateLayer(ROTATE_METHOD(rand() % 9 + 1));
+	}
+	*/
 	solveCube(cube, op);
 	printOperation();
+	
 	initDisplay(cube);
 	loadOperation(op);
 	startDisplay();

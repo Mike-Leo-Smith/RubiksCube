@@ -4,14 +4,14 @@
 
 #include <iostream>
 #include "solve.h"
-#include "usefull.h"
+#include "useful.h"
 
 namespace RubiksCube
 {
 	static OpStack op_seq;
 	static Cube *cube;
 	
-	static char mapOperationName(ROTATE_METHOD rotate_method);
+	static std::string mapOperationName(ROTATE_METHOD rotate_method);
 	
 	static void fixButtomLayer(void);
 	static void fixMiddleLayer(void);
@@ -45,86 +45,76 @@ namespace RubiksCube
 	{
 		for (int i = 0; op_seq[i] != STOP; i++)
 		{
-			char c = mapOperationName(op_seq[i]);
-			if (c != 'N') std::cout << c;
+			std::string c = mapOperationName(op_seq[i]);
+			if (c != "N") std::cout << c << ' ';
 		}
 		std::cout << std::endl;
 	}
 	
-	char mapOperationName(ROTATE_METHOD rotate_method)
+	std::string mapOperationName(ROTATE_METHOD rotate_method)
 	{
 		switch (rotate_method)
 		{
 		case U:
-			return 'U';
+			return "U";
 		case Ui:
-			return 'u';
+			return "Ui";
 		case D:
-			return 'D';
+			return "D";
 		case Di:
-			return 'd';
+			return "Di";
 		case F:
-			return 'F';
+			return "F";
 		case Fi:
-			return 'f';
+			return "Fi";
 		case B:
-			return 'B';
+			return "B";
 		case Bi:
-			return 'b';
+			return "Bi";
 		case R:
-			return 'R';
+			return "R";
 		case Ri:
-			return 'r';
+			return "Ri";
 		case L:
-			return 'L';
+			return "L";
 		case Li:
-			return 'l';
-		case X:
-			return 'X';
-		case Xi:
-			return 'x';
-		case Y:
-			return 'Y';
-		case Yi:
-			return 'y';
-		case Z:
-			return 'Z';
-		case Zi:
-			return 'z';
+			return "Li";
 		default:
-			return 'N';
+			std::cerr << "Unknown operation: " << rotate_method << std::endl;
+			return "Unknown";
 		}
 	}
 	
 	void performFormula(const char *formula)
 	{
-		char op;
+		char step;
+		ROTATE_METHOD op;
 		int index = 0;
 		
-		while ((op = formula[index++]) != 0)
+		while ((step = formula[index++]) != 0)
 		{
-			if (op == 'R') op = R;
-			else if (op == 'r') op = Ri;
-			else if (op == 'L') op = L;
-			else if (op == 'l') op = Li;
-			else if (op == 'U') op = U;
-			else if (op == 'u') op = Ui;
-			else if (op == 'D') op = D;
-			else if (op == 'd') op = Di;
-			else if (op == 'F') op = F;
-			else if (op == 'f') op = Fi;
-			else if (op == 'B') op = B;
-			else if (op == 'b') op = Bi;
-			else if (op == 'X') op = X;
-			else if (op == 'x') op = Xi;
-			else if (op == 'Y') op = Y;
-			else if (op == 'y') op = Yi;
-			else if (op == 'Z') op = Z;
-			else if (op == 'z') op = Zi;
+			if (step == 'R') op = R;
+			else if (step == 'r') op = Ri;
+			else if (step == 'L') op = L;
+			else if (step == 'l') op = Li;
+			else if (step == 'U') op = U;
+			else if (step == 'u') op = Ui;
+			else if (step == 'D') op = D;
+			else if (step == 'd') op = Di;
+			else if (step == 'F') op = F;
+			else if (step == 'f') op = Fi;
+			else if (step == 'B') op = B;
+			else if (step == 'b') op = Bi;
+			else if (step == 'X') op = X;
+			else if (step == 'x') op = Xi;
+			else if (step == 'Y') op = Y;
+			else if (step == 'y') op = Yi;
+			else if (step == 'Z') op = Z;
+			else if (step == 'z') op = Zi;
 			else op = N;
 			
-			op_seq.add(ROTATE_METHOD(op));
-			cube->rotateLayer(ROTATE_METHOD(op));
+			op_seq.add(op);
+			cube->rotateLayer(op);
 		}
 	}
 	
@@ -141,6 +131,7 @@ namespace RubiksCube
 			fixBottomRightCorner();
 			performFormula("y");
 		}
+		
 	}
 	
 	void fixMiddleLayer(void)
@@ -513,25 +504,36 @@ namespace RubiksCube
 		}
 	}
 	
-	inline void OpStack::add(ROTATE_METHOD rotate_method)
+	inline void OpStack::add(ROTATE_METHOD method)
 	{
-		ROTATE_METHOD top = pop();
-		ROTATE_METHOD second = pop();
+		if (method != X && method != Xi && method != Y && method != Yi && method != Z && method != Zi && method != N)
+		{
+			if (method == STOP)
+			{
+				push(STOP);
+				return;
+			}
+			method = cube->getMappedOperation(method);
+			
+			ROTATE_METHOD top = pop();
+			ROTATE_METHOD second = pop();
+			
+			if (method == -top)
+			{
+				push(second);
+			}
+			else if (method == top && method == second)
+			{
+				push(ROTATE_METHOD(-method));
+			}
+			else
+			{
+				if (second != N) push(second);
+				if (top != N) push(top);
+				push(method);
+			}
+		}
 		
-		if (rotate_method == -top)
-		{
-			push(second);
-		}
-		else if (rotate_method == top && rotate_method == second)
-		{
-			push(ROTATE_METHOD(-rotate_method));
-		}
-		else
-		{
-			push(second);
-			push(top);
-			push(rotate_method);
-		}
 	}
 	
 	inline void OpStack::push(ROTATE_METHOD rotate_method)

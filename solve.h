@@ -18,7 +18,7 @@ namespace RubiksCube
 		void push(ROTATE_METHOD rotate_method);
 	
 	public:
-		void add(ROTATE_METHOD rotate_method);
+		void add(ROTATE_METHOD method);
 		void setElemPtr(ROTATE_METHOD *op);
 		ROTATE_METHOD operator[](int index);
 	};
