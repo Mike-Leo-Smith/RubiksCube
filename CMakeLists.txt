@@ -13,5 +13,5 @@ add_executable(RubiksCube ${SOURCE_FILES} main.cpp RubiksCube.cpp RubiksCube.h c
 if (WIN32)
 	target_link_libraries(${PROJECT_NAME} glfw3 opengl32 glu32)
 elseif (APPLE)
-	target_link_libraries(${PROJECT_NAME} glfw3)
+	target_link_libraries(${PROJECT_NAME} glfw)
 endif ()

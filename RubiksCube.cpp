@@ -168,7 +168,7 @@ namespace RubiksCube
 		FACE_NAME op_face = FACE_NAME(abs(method) - 1);
 		FACE_NAME origin_face = _color_face_map[getFaceCenterColor(op_face)];
 		ROTATE_METHOD origin_method = ROTATE_METHOD(origin_face + 1);
-		if (method > 0 && method % 2 != 0 || method < 0 && abs(method) % 2 == 0)  // counter-clockwise rotation methods
+		if ((method > 0 && method % 2 != 0) || (method < 0 && abs(method) % 2 == 0))  // counter-clockwise rotation methods
 		{
 			if (origin_method % 2 == 0) origin_method = ROTATE_METHOD(-origin_method);
 		}

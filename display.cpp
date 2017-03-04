@@ -226,6 +226,18 @@ namespace RubiksCube
 		glFrontFace(GL_CCW);
 		glEnable(GL_CULL_FACE);
 		glCullFace(GL_BACK);
+		
+		glEnable(GL_LIGHTING);
+		glEnable(GL_COLOR_MATERIAL);
+		GLfloat light_param[] = { 15.0, 15.0, 5.0, 1.0 };
+		glLightfv(GL_LIGHT0, GL_POSITION, light_param);
+		GLfloat light_spot[] = { -3, -3, -1, -1 };
+		glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, light_spot);
+		GLfloat light_diffuse[] = { 1.0, 1.0, 1.0, 1.0 };
+		glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
+		GLfloat light_specular[] = { 0.7, 0.55, 0.65, 1.0 };
+		glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
+		glEnable(GL_LIGHT0);
 	}
 	
 	void drawAnimation(Animation &ani)
